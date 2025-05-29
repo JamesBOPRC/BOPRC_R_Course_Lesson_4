@@ -62,7 +62,10 @@ current state?*
 
 <details>
 
-<summary><b>Click to see a solution</b></summary>
+<summary>
+
+<b>Click to see a solution</b>
+</summary>
 
 ``` r
 summary(Discharge_DF)
@@ -161,8 +164,10 @@ points if you can get R to recognise ^3 as a superscript.*
 
 <details>
 
-<summary><b>Click to see a solution</b></summary>
+<summary style="display: inline-block;">
 
+<b>Click to see a solution</b>
+</summary>
 
 ``` r
 Discharge_DF %>% 
@@ -367,8 +372,11 @@ this new dataset the name ‘Daily_Disc’ and run str() to see the
 structure of the output.*
 
 <details>
-<summary><b>Click to see a solution</b></summary>
 
+<summary style="display: inline-block;">
+
+<b>Click to see a solution</b>
+</summary>
 
 ``` r
 #this is the dataset thickened to daily intervals
@@ -427,8 +435,10 @@ created above and save it as ‘Daily_Disc.png’.*
 
 <details>
 
-<summary><b>Click to see a solution</b></summary>
+<summary style="display: inline-block;">
 
+<b>Click to see a solution</b>
+</summary>
 
 ``` r
 Daily_Disc_Plot <- 
@@ -494,8 +504,10 @@ dpi=300, height=6, and width = 8.*
 
 <details>
 
-<summary><b>Click to see a solution</b></summary>
+<summary style="display: inline-block;">
 
+<b>Click to see a solution</b>
+</summary>
 
 ``` r
 ggsave(plot = Combined_Plot,filename = "Disc_Comparison_Plot.png",dpi=300,height=6,width=8)
@@ -525,8 +537,10 @@ Time column to a proper timestamp using ‘parse_date_time’.*
 
 <details>
 
-<summary><b>Click to see a solution</b></summary>
+<summary style="display: inline-block;">
 
+<b>Click to see a solution</b>
+</summary>
 
 ``` r
 Rainfall_DF <- read.csv("./data/TeWhaiti_Minginui_Rainfall.csv")
@@ -654,7 +668,10 @@ the middle panel, which means that you will need to use
 
 <details>
 
-<summary><b>Click to see a solution</b></summary>
+<summary style="display: inline-block;">
+
+<b>Click to see a solution</b>
+</summary>
 
 ``` r
 Nitrate_DF <- read.csv("./data/Rangitaiki_Nitrate.csv")
@@ -783,8 +800,10 @@ sensor vs lab relationship over this time period?*
 
 <details>
 
-<summary><b>Click to see a solution</b></summary>
+<summary style="display: inline-block;">
 
+<b>Click to see a solution</b>
+</summary>
 
 ``` r
 Merged_Nitrate_DF %>% 

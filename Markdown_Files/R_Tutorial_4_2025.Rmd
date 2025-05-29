@@ -46,8 +46,7 @@ It's good practice to inspect a dataset after importing it.  You can use the 'st
 ___
 ***Challenge 1:*** *Use the 'summary' funtion to inspect Discharge_DF.  What do you notice about the dataset?  Can we plot Value vs. Time in it's current state?*
 
-<details>
-<summary style="display: inline-block;"><b>Click to see a solution</b></summary>
+<details><summary><b>Click to see a solution</b></summary>
 
 ```{r message=FALSE,tidy=TRUE}
 
@@ -172,7 +171,9 @@ Discharge_DF_Gaps %>%
 
 ```
 
-Padr has automatically detected a 5 minute interval, and 'padded' our dataset, ensuring there is a row for every timestep.  This is much more representative of our dataset.  
+This is a much better representation of our dataset! Padr has automatically detected a 5 minute interval, and 'padded' our dataset, ensuring there is a row for every timestep.  The new rows have NA values so ggplot doesn't try to connect the points on either side.  
+
+Open the Discharge_DF_Gaps dataset and take a look at the output for yourself.  If you scroll down to the 1st February (row 3457) you can see the newly padded rows. 
 
 ## Interpolation
 
@@ -205,6 +206,8 @@ We will use the spline record from this point onwards.
 
 Another great function in the 'padr' package is *'thicken()'*.  This will create an additional column with timestamps at a reduced frequency.  For example, you might thicken a 5 minute dataframe to an hourly dataframe, or even daily dataframe.  You can plug this into the tidyverse pipeline to summarise the dataset at the new frequency.  
 
+*thicken()* only needs a dataset, 'x', and 'interval' to run.  'x' is automatically provided by the tidyverse pipeline, so we really only need to define the interval.  Intervals can use: "sec", "min", "hour", "day", "week", "month", "quarter" or "year", e.g., "15 min".  The function will automatically detect the column with timestamps and use that, but you can use the 'by' argument to define a specific column. The 'colname' argument specifies what you want the thickened column to be named.  If you don't enter a 'colname', *thicken()* will automatically assign a name based on the name of the original datetime variable with the interval name added to it (including the unit), separated by underscores
+
 Let's thicken our new spline interpolated dataset to hourly and daily intervals. 
 
 
@@ -225,7 +228,7 @@ head(Hourly_Disc)
 
 
 ___
-***Challenge 3:*** *Thicken and summarise the 'Discharge_DF_Gaps' dataset to a daily timestamp.  Assign this new dataset the name 'Daily_Disc'*
+***Challenge 3:*** *Thicken and summarise the 'Discharge_DF_Gaps' dataset to a daily timestamp.  Set a 'colname' of 'Day_Stamp'.  Assign this new dataset the name 'Daily_Disc' and run str() to see the structure of the output.*
 
 
 <details>
@@ -240,7 +243,7 @@ Daily_Disc <- Discharge_DF_Gaps %>%
   group_by(Day_Stamp) %>% 
   summarise(Value = mean(Value_Spline,na.rm=T))
 
-head(Daily_Disc)
+str(Daily_Disc)
 ```
 </details>
 ___
@@ -445,7 +448,7 @@ ___
 <details>
 <summary style="display: inline-block;"><b>Click to see a solution</b></summary>
 
-```{r message=FALSE }
+```{r message=FALSE, warning=FALSE}
   
 Nitrate_DF <- read.csv("./data/Rangitaiki_Nitrate.csv")
 
@@ -470,6 +473,8 @@ ggsave(plot = Combined_Plot, filename = "Combined_Rain_Nitrate_Disc.png",width=8
 
 
 ```
+Fantastic!  We can see how nitrate at this site starts with an elevated baseline of around 1.62 mg/l and then becomes diluted when storm events come through.  This suggests that nitrate is supplied through baseflow (groundwater inputs) and  high levels of rainfall cause a dilution effect.  This type of stream signature is common in the Bay of Plenty, particularly in the Taupo Volcanic Zone where porous volcanic soils result in vertical leaching of nitrate (which is water soluble) to underlying aquifers.  
+
 </details>
 ___
 
